@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon"><img src="nav logo.png"></div>
+            <span>EduLift</span>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search..." readonly>
+        </div>
+        <div class="header-icons">
+            <div class="cart-icon" id="cartIcon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge">1</span>
+            </div>
+            <div class="user-icon" id="userIcon"><i class="fa-solid fa-user"></i></div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="catalog.html" class="nav-item">Catalog</a>
+        <a href="plans.html" class="nav-item">Plans & Pricing</a>
+        <a href="degree.html" class="nav-item">Online Degrees</a>
+        <a href="about.html" class="nav-item">About Us</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="hero-content">
+            <h1 class="hero-title">Learn Anytime, Anywhere. Your Future Starts Here.</h1>
+            <p class="hero-subtitle">Unlock new skills, transform your career, and achieve your dreams with flexible, expert-led online courses.</p>
+            <div class="cta-buttons">
+                <button class="cta-button">Start Learning Today</button>
+               <a href="catalog.html"> <button class="cta-button secondary">Browse Courses</button></a>
+            </div>
+        </div>
+    </main>
+<section class="collaboration-section">
+  <h2 class="collab-heading">
+    We Collaborate with <span class="collab-highlight">250+ leading universities and companies</span>
+  </h2>
+  <div class="logo-container">
+    <img src="Logo Design Template.jpg" alt="University Logo" class="partner-logo">
+    <img src="ma.png" alt="MIT Logo" class="partner-logo">
+    <img src="codator_com.jpg" alt="Codator" class="partner-logo">
+    <img src="mcq 1.png" alt="MCQ Group" class="partner-logo">
+
+    <img src="msn.jpg" alt="Clemson" class="partner-logo">
+    <img src="clem.jpg" alt="Oregon State University" class="partner-logo">
+        <img src="Oregon State University Logo.jpg" alt="Oregon State University" class="partner-logo">
+  </div>
+</section>
+
+  
+    <!-- Cart Modal -->
+    <div class="popup-overlay" id="cartModal">
+        <div class="popup-content">
+            <button class="popup-close" id="closeCartModal">&times;</button>
+            
+            <div class="course-card">
+                <img src="c1.png" alt="Data Analyst Course" class="course-image">
+                <div class="course-info">
+                    <h3 class="course-title"><span style="color: #9747FF;">Data Analyst</span> Career Accelerator</h3>
+                    <div class="course-subtitle">Kickstart your career in data with our intensive, job-ready program.</div>
+                    <p class="course-description">
+                        Learn data analysis, visualization, SQL, Python, and real-world business insights.
+                    </p>
+                    
+                    <div class="course-rating">
+                        <div class="stars">⭐ 4.5</div>
+                        <div class="rating-text">Average Course Rating</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="price-section">
+                <div class="price-row">
+                    <span>Original Price:</span>
+                    <span>Rs.10,447</span>
+                </div>
+                <div class="price-row">
+                    <span>Discount (83% off):</span>
+                    <span class="discount">-Rs.8,710</span>
+                </div>
+                <div class="price-row total">
+                    <span>Total:</span>
+                    <span>Rs.1,737</span>
+                </div>
+            </div>
+            
+            <button class="checkout-button" onclick="proceedCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="popup-overlay" id="authModal">
+        <div class="popup-content">
+            <button class="popup-close" id="closeAuthModal">&times;</button>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="loginTab">Login</div>
+                <div class="auth-tab" id="signupTab">Signup</div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form active" id="loginForm">
+                <div class="auth-title">Welcome Back! Please login to your account</div>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="email" placeholder="abcd@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="************" required>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="auth-button">Login</button>
+                </form>
+                <div class="auth-switch">
+                    New user? <a href="#" id="switchToSignup">Sign up</a>
+                </div>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-form" id="signupForm">
+                <div class="auth-title">Create Your Account</div>
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Enter your last name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="auth-button">Sign Up</button>
+                </form>
+                <div class="auth-switch">
+                    Already have an account? <a href="#" id="switchToLogin">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="scroll-wrapper">
+        <h1 class="scroll-title">Ready to reshape your professional path?</h1>
+        
+        <div class="filter-nav">
+            <span class="filter-btn">Beginner</span>
+            <span class="filter-btn selected">Popular</span>
+            <span class="filter-btn">Software Engineer & IT</span>
+            <span class="filter-btn">Business</span>
+            <span class="filter-btn">Data Science & Analytics</span>
+            <span class="filter-btn">Healthcare</span>
+        </div>
+
+       <div class="horizontal-scroll" id="horizontalScroll">
+        <div class="items-container" id="itemsContainer">
+            <!-- Data Analyst -->
+            <div class="career-item">
+                <div class="item-icon">
+                    <img src="c1.png" alt="Data Analysis">
+                </div>
+                <div class="item-header">
+                    <div class="item-subtitle">Become a Skilled Professional<span style="color:blue; margin-left:10px;">Data Analyst</span></div>
+                </div>
+                <div class="item-description">
+                    Master data collection, analysis, and visualization. Learn tools like Excel, SQL, Python, and Tableau to drive data-driven decisions and launch a high-demand career.
+                </div>
+                <div class="item-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Jobs available:</span>
+                        <span class="detail-value jobs-count">25,000+</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Credentials:</span>
+                        <span class="detail-value">Data Cleaning & Exploration, SQL Querying & Data Management, Data Visualization (Tableau, Power BI)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Scientist -->
+            <div class="career-item">
+                <div class="item-icon">
+                    <img src="s1.png" alt="Data Science">
+                </div>
+                <div class="item-header">
+                  <div class="item-subtitle">Become a Certified <span style="color:blue; margin-left:10px;">Data Scientist</span></div>
+                </div>
+                <div class="item-description">
+                    Learn how to extract insights, build predictive models, and make data-driven decisions using Python, Machine Learning, SQL, and Big Data technologies. Earn a globally recognized credential to launch your high demand career.
+                </div>
+                <div class="item-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Jobs available:</span>
+                        <span class="detail-value jobs-count">26,899+</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Credentials:</span>
+                        <span class="detail-value">Data Mining and Predictive Analytics, Python for Data Science, Big Data Technologies (Hadoop, Spark)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ML Engineer -->
+            <div class="career-item">
+                <div class="item-icon">
+                    <img src="s2.png" alt="Machine Learning">
+                </div>
+                <div class="item-header">
+                   
+                            <div class="item-subtitle">Become a Skilled <span style="color:blue; margin-left:10px;">ML Engineer</span></div>
+                </div>
+                <div class="item-description">
+                    Master the art of building intelligent systems. Learn Python, Deep Learning, AI frameworks, deploy real-world machine learning models. Get certified and fast-track your career in one of the fastest-growing tech fields.
+                </div>
+                <div class="item-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Jobs available:</span>
+                        <span class="detail-value jobs-count">20,456+</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Credentials:</span>
+                        <span class="detail-value">Supervised and Unsupervised Learning, Deep Learning, Model Deployment</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tools:</span>
+                        <span class="detail-value">Python, TensorFlow, PyTorch, Kubernetes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UX/UI Designer -->
+            <div class="career-item">
+                <div class="item-icon">
+                    <img src="s3.png" alt="UI/UX Design">
+                </div>
+                <div class="item-header">
+                   <div class="item-subtitle">Become a Certified <span style="color:blue; margin-left:10px;">ML Engineer</span></div>
+                </div>
+                <div class="item-description">
+                    Learn user research, wireframing, prototyping, and design thinking. Master tools like Figma and Adobe XD to create exceptional user experiences and intuitive interfaces.
+                </div>
+                <div class="item-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Jobs available:</span>
+                        <span class="detail-value jobs-count">15,700+</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Credentials:</span>
+                        <span class="detail-value">Wireframing and Prototyping, User Research, Design Systems</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tools:</span>
+                        <span class="detail-value">Figma, Adobe XD, Sketch</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Stack Developer -->
+            <div class="career-item">
+                <div class="item-icon">
+                    <img src="s3.png" alt="Web Development">
+                </div>
+                <div class="item-header">
+                    <div class="item-subtitle">Become a Skilled <span>Full Stack Developer</span></div>
+                </div>
+                <div class="item-description">
+                    Master both frontend and backend development. Learn React, Node.js, databases, and deploy full-scale web applications. Build end-to-end solutions for modern businesses.
+                </div>
+                <div class="item-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Jobs available:</span>
+                        <span class="detail-value jobs-count">35,200+</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Credentials:</span>
+                        <span class="detail-value">Frontend & Backend Development, Database Management, API Development</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tools:</span>
+                        <span class="detail-value">React, Node.js, MongoDB, PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Excel -->
+            <div class="career-item">
+                <div class="item-icon">
+                    <img src="s4.png" alt="Excel">
+                </div>
+                <div class="item-header">
+                     <div class="item-subtitle">Become a Skilled <span style="color:blue; margin-left:10px;">SQL For Data  Analysis</span></div>
+                </div>
+                <div class="item-description">
+                    Master advanced Excel functions, pivot tables, macros, and VBA programming. Learn data analysis, financial modeling, and automation to boost productivity and career prospects.
+                </div>
+                <div class="item-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Jobs available:</span>
+                        <span class="detail-value jobs-count">18,500+</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Credentials:</span>
+                        <span class="detail-value">Advanced Functions, VBA Programming, Financial Modeling</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tools:</span>
+                        <span class="detail-value">Excel, Power Query, Power Pivot</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Python for Data Science -->
+            <div class="career-item">
+                <div class="item-icon">
+                    <img src="s5.png" alt="Python">
+                </div>
+                <div class="item-header">
+                    <div class="item-subtitle">Become a Certified <span style="color:blue; margin-left:10px;">Advanced Excel for Professionals.</span></div>
+                </div>
+                <div class="item-description">
+                    Master Python programming for data analysis, visualization, and machine learning. Learn pandas, NumPy, matplotlib, and scikit-learn to extract insights from data.
+                </div>
+                <div class="item-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Jobs available:</span>
+                        <span class="detail-value jobs-count">22,800+</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Credentials:</span>
+                        <span class="detail-value">Python Programming, Data Analysis, Machine Learning Basics</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tools:</span>
+                        <span class="detail-value">Python, Pandas, NumPy, Matplotlib</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Analytics -->
+            <div class="career-item">
+                <div class="item-icon">
+                    <img src="s6.png" alt="Business Analytics">
+                </div>
+                <div class="item-header">
+                    <div class="item-subtitle">Become a Skilled <span style="color:blue; margin-left:10px;">Python for Data Science</span></div>
+                </div>
+                <div class="item-description">
+                    Learn business intelligence, statistical analysis, and strategic decision-making. Master tools and techniques to transform business data into actionable insights and drive growth.
+                </div>
+                <div class="item-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Jobs available:</span>
+                        <span class="detail-value jobs-count">31,400+</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Credentials:</span>
+                        <span class="detail-value">Business Intelligence, Statistical Analysis, Strategic Planning</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tools:</span>
+                        <span class="detail-value">Tableau, Power BI, SQL, R</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <section class="role-selection-section">
+    <h2 class="role-heading">Choose your Role</h2>
+    <p class="role-subheading">Gain the knowledge and skills you need to advance.</p>
+      <a href="catalog.html"><button class="explore-button">Explore All Roles</button></a> 
+  </section>
+
+  <section class="experts-section">
+    <h2 class="experts-heading">Learn From the <span class="highlight-text">Experts</span> Who Shape the Future</h2>
+    
+    <div class="experts-grid">
+      <div class="expert-card">
+        <img src="download.jpg" alt="Dr. Daniel Mark" class="expert-image">
+        <h3 class="expert-name">Dr. Daniel Mark</h3>
+        <p class="expert-role">Data Science & Educator and<br>Researcher with two PhD’s</p>
+      </div>
+
+      <div class="expert-card">
+        <img src="myra.png" alt="Myra" class="expert-image">
+        <h3 class="expert-name">Myra</h3>
+        <p class="expert-role">Data Science Educator<br>& Mentor</p>
+      </div>
+
+      <div class="expert-card">
+        <img src="vihan.jpg" alt="Vihaan" class="expert-image">
+        <h3 class="expert-name">Vihaan</h3>
+        <p class="expert-role">AI and Machine Learning<br>Specialist</p>
+      </div>
+
+      <div class="expert-card">
+        <img src="download (2).jpg" alt="Ishaan" class="expert-image">
+        <h3 class="expert-name">Ishaan</h3>
+        <p class="expert-role">Cloud Engineer and<br>Big Data Instructor</p>
+      </div>
+    </div>
+  </section>
+<section class="subscription-banner">
+  <h2 class="subscription-heading">
+    Join More Than <span class="highlighted-text">2,50,000 Learners</span> Countrywide
+  </h2>
+  <a href="catalog.html" class="cta-button">Start Learning Free</a>
+</section>
+
+<section class="benefits-section">
+  <h3 class="benefits-title">With our Subscription, Get Access To;</h3>
+
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <h4 class="benefit-title">Join a Thriving Learning Community</h4>
+      <p class="benefit-description">
+        Subscribe to connect with mentors, peers, and industry experts — learn, collaborate, and grow together.
+      </p>
+    </div>
+
+    <div class="benefit-card">
+      <h4 class="benefit-title">Work on Real-World Projects</h4>
+      <p class="benefit-description">
+        Gain hands-on experience! Subscribe now to access project-based courses designed to build real-world skills.
+      </p>
+    </div>
+
+    <div class="benefit-card">
+      <h4 class="benefit-title">Earn Certificates That Matter</h4>
+      <p class="benefit-description">
+        Showcase your skills with verified certificates. Subscribe today and start building a portfolio that stands out.
+      </p>
+    </div>
+
+    <div class="benefit-card">
+      <h4 class="benefit-title">Access Expert-Curated Courses</h4>
+      <p class="benefit-description">
+        Learn from the best in the industry. Subscribe to explore a rich library of courses tailored for your success.
+      </p>
+    </div>
+
+    <div class="benefit-card">
+      <h4 class="benefit-title">Get Personalized Mentorship</h4>
+      <p class="benefit-description">
+        Unlock mentorship sessions with experts who guide your learning journey. Subscribe and take your skills higher!
+      </p>
+    </div>
+
+    <div class="benefit-card">
+      <h4 class="benefit-title">Turn Learning into Career Growth</h4>
+      <p class="benefit-description">
+        Don’t just learn — grow your career. Subscribe for full access to skill paths, certifications, and job-ready projects.
+      </p>
+    </div>
+  </div>
+</section>
+
+    <section class="benefits-wrapper">
+  <div class="benefits-container">
+    
+    <div class="benefits-text">
+      <h2 class="benefits-title">Why Choose Us?</h2>
+      <ul class="benefits-list1">
+        <li><strong>Expert Mentors:</strong> Learn from industry professionals with real-world experience</li>
+        <li><strong>Hands-On Learning:</strong> Practice with real projects, case studies, and assessments</li>
+        <li><strong>Flexible Scheduling:</strong> Learn anytime, anywhere, at your own pace</li>
+        <li><strong>Career-Focused Curriculum:</strong> Skills that match today’s job market</li>
+        <li><strong>Mentor Support:</strong> Get weekly 1-on-1 guidance to stay on track</li>
+        <li><strong>Track Progress:</strong> Personalized dashboards to monitor your growth</li>
+        <li><strong>Certification & Job Support:</strong> Earn certificates and prepare for top tech roles</li>
+      </ul>
+    </div>
+
+    <div class="benefits-image">
+      <img src="Career Counselling.jpg" alt="Career growth" />
+    </div>
+
+  </div>
+</section>
+
+   <section class="guidance-section">
+  <div class="guidance-container">
+    
+    <div class="guidance-image-box">
+      <img src="new-normal-office-with-face-mask.jpg" alt="Mentor teaching online" class="mentor-img" />
+
+      <div class="chat-bubble bubble-one">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="chat-avatar">
+        <p>Thanks! For Explaining that Clearly.</p>
+      </div>
+
+      <div class="chat-bubble bubble-two">
+        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="User" class="chat-avatar">
+        <p>Great! It’s Clear to me now.</p>
+      </div>
+    </div>
+
+    <div class="guidance-text-box">
+      <h2 class="guidance-title">Personalized Guidance from Industry Experts</h2>
+      <p class="guidance-description">
+        Get personalized guidance from industry experts who have mastered their fields. <br>
+        Learn directly from mentors who understand your goals and help you achieve real-world success.
+      </p>
+
+      <h4 class="guidance-subtitle">What Makes Our Instructors Exceptional:</h4>
+      <ul class="guidance-list">
+        <li>✅ Proven Industry Experience</li>
+        <li>✅ Personalized Mentorship</li>
+        <li>✅ Updated and Practical Knowledge</li>
+        <li>✅ Passion for Teaching</li>
+        <li>✅ Global Perspective</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+    <section class="testimonial-section">
+  <h2>From The <span class="highlight">EDULIFT</span> Community</h2>
+  <p class="subheading">10+ million people have already joined EDULIFT</p>
+  <div class="testimonials-container">
+    <div class="intro-text">
+      <h3>Hear What Our Learners Are Saying</h3>
+      <p>Our students' success stories speak for themselves.<br>See how personalized learning and expert mentorship have transformed their careers and lives.</p>
+    </div>
+
+    <div class="card">
+      <img src="t1.png" alt="Rohit S." />
+      <div class="quote"><i class="fa-solid fa-quote-left"></i></div>
+      <p class="text">The one-on-one mentorship sessions were a game-changer. I got clear guidance, project reviews, and career advice directly from an expert who genuinely cared about my success.</p>
+      <p class="name">Rohit S. ⭐⭐⭐⭐⭐</p>
+      <p class="role">Data Analyst</p>
+    </div>
+
+    <div class="card">
+      <img src="t2.png" alt="Nehan P." />
+      <div class="quote"><i class="fa-solid fa-quote-left"></i></div>
+      <p class="text">The personalized feedback from my mentor completely changed my learning journey. Instead of just theory, I got real-world insights that helped me land my dream job in tech.</p>
+      <p class="name">Nehan P. ⭐⭐⭐⭐⭐</p>
+      <p class="role">Software Developer</p>
+    </div>
+
+    <div class="card">
+      <img src="t3.png" alt="Aaradhya V." />
+      <div class="quote"><i class="fa-solid fa-quote-left"></i></div>
+      <p class="text">Learning from someone who's actually worked in the industry made all the difference. My instructor didn’t just teach — they coached me, challenged me, and helped me grow faster than I ever expected.</p>
+      <p class="name">Aaradhya V. ⭐⭐⭐⭐⭐</p>
+      <p class="role">Digital Marketing Specialist</p>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer Section -->
+    <section class="footer-section">
+        <div class="footer-container">
+            <div class="footer-brand-column">
+                <div class="footer-brand">
+                    <div class="brand-logo"><img src="nav logo.png"></div>
+                    <span style="font-weight: 700; font-size: 1.2rem;">Edu Lift</span>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Access</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="catalog.html">Catalog</a></li>
+                    <li><a href="plans.html">Plans & Pricing</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Catalog</h3>
+                <ul class="footer-links">
+                    <li><a href="data.html">Data Analyst</a></li>
+                    <li><a href="degree.html">Online Degrees</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-item">
+                    <span><i class="fa-solid fa-envelope"></i></span>
+                    <span>Email: support@yourplatform.com</span>
+                </div>
+                <div class="contact-item">
+                    <span><i class="fa-solid fa-phone"></i></span>
+                    <span>Phone: +1 (123) 456-7890</span>
+                </div>
+                <div class="contact-item">
+                    <span><i class="fa-solid fa-clock"></i></span>
+                    <span>Support Hours: Mon-Fri, 9 AM to 6 PM (IST)</span>
+                </div>
+                
+                <div class="social-links">
+                    <div class="social-title">Follow with Us</div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" class="social-icon twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+       
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+ <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+   <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon"><img src="nav logo.png"></div>
+            <span>EduLift</span>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search..." readonly>
+        </div>
+        <div class="header-icons">
+            <div class="cart-icon" id="cartIcon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge">1</span>
+            </div>
+            <div class="user-icon" id="userIcon"><i class="fa-solid fa-user"></i></div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="catalog.html" class="nav-item">Catalog</a>
+        <a href="plans.html" class="nav-item">Plans & Pricing</a>
+        <a href="degree.html" class="nav-item">Online Degrees</a>
+        <a href="about.html" class="nav-item">About Us</a>
+    </nav>
+
+ <!-- Cart Modal -->
+    <div class="popup-overlay" id="cartModal">
+        <div class="popup-content">
+            <button class="popup-close" id="closeCartModal">&times;</button>
+            
+            <div class="course-card">
+                <img src="c1.png" alt="Data Analyst Course" class="course-image">
+                <div class="course-info">
+                    <h3 class="course-title"><span style="color: #9747FF;">Data Analyst</span> Career Accelerator</h3>
+                    <div class="course-subtitle">Kickstart your career in data with our intensive, job-ready program.</div>
+                    <p class="course-description">
+                        Learn data analysis, visualization, SQL, Python, and real-world business insights.
+                    </p>
+                    
+                    <div class="course-rating">
+                        <div class="stars">⭐ 4.5</div>
+                        <div class="rating-text">Average Course Rating</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="price-section">
+                <div class="price-row">
+                    <span>Original Price:</span>
+                    <span>Rs.10,447</span>
+                </div>
+                <div class="price-row">
+                    <span>Discount (83% off):</span>
+                    <span class="discount">-Rs.8,710</span>
+                </div>
+                <div class="price-row total">
+                    <span>Total:</span>
+                    <span>Rs.1,737</span>
+                </div>
+            </div>
+            
+            <button class="checkout-button" onclick="proceedCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="popup-overlay" id="authModal">
+        <div class="popup-content">
+            <button class="popup-close" id="closeAuthModal">&times;</button>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="loginTab">Login</div>
+                <div class="auth-tab" id="signupTab">Signup</div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form active" id="loginForm">
+                <div class="auth-title">Welcome Back! Please login to your account</div>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="email" placeholder="abcd@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="************" required>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="auth-button">Login</button>
+                </form>
+                <div class="auth-switch">
+                    New user? <a href="#" id="switchToSignup">Sign up</a>
+                </div>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-form" id="signupForm">
+                <div class="auth-title">Create Your Account</div>
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Enter your last name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="auth-button">Sign Up</button>
+                </form>
+                <div class="auth-switch">
+                    Already have an account? <a href="#" id="switchToLogin">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+     <div class="plan-container">
+        <!-- Header Section -->
+        <section class="plan-section">
+            <div class="plan-container">
+                <h1 class="p-title">Choose a Plan For Success</h1>
+                <p class="p-subtitle">Don't want to buy courses one by one? Pick a plan to help you, your team, or your organization achieve outcomes faster.</p>
+                
+                <h2 class="journey-title">Unlock Your Learning Journey</h2>
+                <p class="journey-description">Subscribe now and enjoy full access to everything you need to succeed:</p>
+                
+                <div class="benefits-list">
+                    <ul>
+                        <li>Weekly 1-on-1 Mentor Meetings for personalized guidance</li>
+                        <li>Unlimited Access to Course Materials until your subscription ends</li>
+                        <li>Exclusive Video Sessions, Notes & Practice Files</li>
+                        <li>Stay on track with a customized learning plan</li>
+                        <li>Learn anytime, anywhere—on any device</li>
+                    </ul>
+                </div>
+                
+                <p class="cta-text">Choose your plan and start learning with expert support today!</p>
+            </div>
+        </section>
+
+      
+
+        <!-- Pricing Cards -->
+        <div class="pricing-grid">
+            <!-- Basic Plan -->
+            <div class="pricing-card">
+                  <!-- Plan Types -->
+        <div class="plan-types">
+            <div class="plan-type personal-plan">
+                Personal Plan
+                <div class="plan-subtitle">For You <br>
+                    <i class="fa-solid fa-user"></i>Individual</div>
+            </div> </div>
+        
+   
+                <div class="card-header basic-header">
+                    <div class="plan-name">Basic Plan</div>
+                    <div class="plan-price">Starting at Rs. 499 Per Month<br>Billed monthly or annually. Cancel Anytime</div>
+                </div>
+                <div class="card-body">
+                    <ul class="features-list">
+                        <li>Access to limited courses (starter library)</li>
+                        <li>Community access (discussion forums only)</li>
+                        <li>Monthly learning challenges</li>
+                        <li>No certificates</li>
+                    </ul>
+                    <button class="subscribe-btn">Start Subscription</button>
+                </div>
+            </div>    
+
+            <!-- Pro Plan -->
+            <div class="pricing-card">
+                  <!-- Plan Types -->
+        <div class="plan-types">
+            
+            <div class="plan-type team-plan">
+                Team Plan
+                <div class="plan-subtitle">For Your Team <br>
+                  <i class="fa-solid fa-users"></i>  2 to 20 People</div>
+            </div>
+            
+        </div>
+                <div class="card-header pro-header">
+                    <div class="plan-name">Pro Plan</div>
+                    <div class="plan-price">Rs. 1,499 a Month Per User<br>Billed annually. Cancel Anytime</div>
+                </div>
+                <div class="card-body">
+                    <ul class="features-list">
+                        <li>Unlimited access to all courses</li>
+                        <li>Access to real-world projects</li>
+                        <li>Certificate of Completion for each course</li>
+                        <li>Community + Mentor interaction</li>
+                        <li>Monthly webinars and expert Q&A sessions</li>
+                    </ul>
+                    <button class="subscribe-btn">Start Subscription</button>
+                </div>
+            </div>
+
+            <!-- Elite Plan -->
+            <div class="pricing-card">
+                  <!-- Plan Types -->
+        <div class="plan-types">
+           
+            <div class="plan-type enterprise-plan">
+                Enterprise Plan
+                <div class="plan-subtitle">For Your Whole Oraganisation<br>
+                 <i class="fa-solid fa-users"></i>   More Than 20 People</div>
+            </div>
+        </div>
+                <div class="card-header elite-header">
+                    <div class="plan-name">Elite Plan</div>
+                    <div class="plan-price">Contact sales for pricing</div>
+                </div>
+                <div class="card-body">
+                    <ul class="features-list">
+                        <li>Everything in Pro Plan</li>
+                        <li>Personalized mentorship (1:1 session every month)</li>
+                        <li>Career roadmap planning</li>
+                        <li>Priority support</li>
+                        <li>Early access to new courses & features</li>
+                        <li>Premium certificates (industry verified)</li>
+                    </ul>
+                    <button class="subscribe-btn">Start Subscription</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="test-container">
+            <h2 class="testimonials-title">See What Others are achieving Through Learning</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text"><i class="fa-solid fa-quote-left"></i><br>From landing dream jobs to launching successful businesses, our learners are proving that knowledge truly is power. With every course completed, they're building skills, confidence, and a future they believe in.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-db">DB</div>
+                        <div class="author-name">Diwahar B</div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text"><i class="fa-solid fa-quote-left"></i><br>Through expert-led courses and real-world projects, learners are advancing their careers, earning certifications, and mastering in-demand skills. Education with us isn't just learning — it's achieving measurable, life-changing results.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-db">BR</div>
+                        <div class="author-name">Babu R</div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text"><i class="fa-solid fa-quote-left"></i><br>Thousands of learners are taking the next big step — mastering new skills, earning certifications, and chasing their passions. Your success story could be next. Start learning, start achieving!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-db">DM</div>
+                        <div class="author-name">David M</div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text"><i class="fa-solid fa-quote-left"></i><br>Thousands of learners are taking the next big step — mastering new skills, earning certifications, and chasing their passions. Your success story could be next. Start learning, start achieving!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-db">DM</div>
+                        <div class="author-name">David M</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+      <!-- Footer Section -->
+    <section class="footer-section">
+        <div class="footer-container">
+            <div class="footer-brand-column">
+                <div class="footer-brand">
+                    <div class="brand-logo"><img src="nav logo.png"></div>
+                    <span style="font-weight: 700; font-size: 1.2rem;">Edu Lift</span>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Access</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="catalog.html">Catalog</a></li>
+                    <li><a href="plans.html">Plans & Pricing</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Catalog</h3>
+                <ul class="footer-links">
+                    <li><a href="data.html">Data Analyst</a></li>
+                    <li><a href="degree.html">Online Degrees</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-item">
+                    <span><i class="fa-solid fa-envelope"></i></span>
+                    <span>Email: support@yourplatform.com</span>
+                </div>
+                <div class="contact-item">
+                    <span><i class="fa-solid fa-phone"></i></span>
+                    <span>Phone: +1 (123) 456-7890</span>
+                </div>
+                <div class="contact-item">
+                    <span><i class="fa-solid fa-clock"></i></span>
+                    <span>Support Hours: Mon-Fri, 9 AM to 6 PM (IST)</span>
+                </div>
+                
+                <div class="social-links">
+                    <div class="social-title">Follow with Us</div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" class="social-icon twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <script src="script.js"></script>
+</body>
+</html>
